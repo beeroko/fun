@@ -83,6 +83,16 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.ht
 
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')))
 
+app.post('/profile', async (req, res) => {
+  const user = await getUser(req)
+  if (user) {
+    const { id, email, username } = user
+    res.status(200).json({ id, email, username })
+  } else {
+    res.status(401)
+  }
+})
+
 app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'public', 'register.html')))
 
 app.post('/check', async (req, res) => {

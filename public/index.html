@@ -27,13 +27,13 @@
                   <tbody>
                     <tr>
                       <td width="100"><span class="text-muted mr-2">Username:</span></td>
-                      <td><span class="text-black">user</span></td>
+                      <td><span id="username" class="text-black"></span></td>
                     </tr>
                     <tr>
                       <td width="100"><span class="text-muted mr-2">E-mail:</span></td>
                       <td>
                         <span class="text-black">
-                          <a href="mailto:user@email.com">user@email.com</a>
+                          <a id="email" href="mailto:user@email.com"></a>
                         </span>
                       </td>
                     </tr>
@@ -65,6 +65,22 @@
     <script src="/scripts/lib.js"></script>
     <script>
       checkAuth()
+
+      $.ajax({
+        type: 'POST',
+        beforeSend: function (request) {
+          request.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'))
+        },
+        url: '/profile',
+      })
+        .fail(function () {
+          window.location.href = '/login'
+        })
+        .done(function ({ email, username }) {
+          $('#username').text(username)
+          $('#email').text(email).attr('href', 'mailto:' + email)
+        })
+
       $('#logout').on('click', function (event) {
         event.preventDefault()
         logout()
