@@ -66,6 +66,7 @@
           })
           .done(function (data, textStatus, jqXHR) {
             $('.error').remove()
+            window.location.href = '/login'
           })
           .always(function (data, textStatus, errorThrown) {})
       })

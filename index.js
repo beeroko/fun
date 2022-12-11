@@ -48,9 +48,11 @@ const getUserByToken = async (token) => {
 
 const getUserByCredentials = async (email, password) => {
   return new Promise((resolve, reject) => {
-    db.get('select * from users where email = ?', [email], (err, row) => {
-      if (row) {
-        resolve(row)
+    db.get('select * from users where email = ?', [email], (err, user) => {
+      if (user) {
+        if (bcrypt.compareSync(password, user.password)) {
+          resolve(user)
+        }
       }
       resolve(null)
     })
@@ -90,7 +92,6 @@ app.post('/check', async (req, res) => {
 
 app.post('/logout', async (req, res) => {
   const user = await getUser(req)
-  console.log(user)
   db.run('update users set token = null where id = ?', [user.id], (err) => {
     if (err) {
       return res.status(500).json({

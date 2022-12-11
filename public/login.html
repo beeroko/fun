@@ -19,6 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md">
+          <div class="alert alert-danger" role="alert" style="display: none"></div>
           <form>
             <div class="form-group">
               <label for="email">E-mail</label>
@@ -54,13 +55,21 @@
         $.post('/login', $('form').serialize())
           .fail(function (xhr, textStatus, errorThrown) {
             $('.error').remove()
-            const { errors } = xhr.responseJSON
-            Object.keys(errors).forEach((key) => {
-              $(`#${key}`).after(`<small class="error form-text text-danger">${errors[key]}</small>`)
-            })
+            const { status, responseJSON } = xhr
+            if (status == 422) {
+              const { errors } = responseJSON
+              Object.keys(errors).forEach((key) => {
+                $(`#${key}`).after(`<small class="error form-text text-danger">${errors[key]}</small>`)
+              })
+            } else if (status == 403) {
+              $('.alert').text('Wrong email or password').show()
+            } else {
+              $('.alert').text('Unknown error').show()
+            }
           })
           .done(function (data, textStatus, jqXHR) {
             $('.error').remove()
+            $('.alert').hide()
             const { token } = data
             localStorage.setItem('token', token)
             $(location).attr('href', '/')
