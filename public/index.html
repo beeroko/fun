@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <title>Hello, world!</title>
+  </head>
+  <body style="margin: 20px">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <div class="card">
+            <div class="card-body pb-0">
+              <h5 class="card-title">Your profile</h5>
+              <div class="mt-4">
+                <table class="table mb-2">
+                  <tbody>
+                    <tr>
+                      <td width="100"><span class="text-muted mr-2">Username:</span></td>
+                      <td><span class="text-black">user</span></td>
+                    </tr>
+                    <tr>
+                      <td width="100"><span class="text-muted mr-2">E-mail:</span></td>
+                      <td>
+                        <span class="text-black">
+                          <a href="mailto:user@email.com">user@email.com</a>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2" align="right">
+                        <a href="#" id="logout">Log out</a>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/scripts/lib.js"></script>
+    <script>
+      checkAuth()
+      $('#logout').on('click', function (event) {
+        event.preventDefault()
+        logout()
+      })
+    </script>
+  </body>
+</html>

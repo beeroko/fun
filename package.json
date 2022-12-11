@@ -1,0 +1,17 @@
+{
+  "name": "fun",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/perezradrigez/fun.git",
+  "author": "perezradrigez <perezradrigez@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.2"
+  }
+}
