@@ -50,10 +50,16 @@ Run sqlite3 CLI:
 sqlite3
 ```
 
+Open database file:
+
+```sh
+sqlite3> .open /path/to/project/db.db
+```
+
 Execute SQL script:
 
-```sql
-CREATE TABLE users (
+```sh
+sqlite3> CREATE TABLE users (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   username TEXT(25) NOT NULL,
   email TEXT(50) NOT NULL,
